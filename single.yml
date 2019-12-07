@@ -1,0 +1,34 @@
+##########################################################################
+# 部署配置文件(base)
+# 本配置文件(xx.yml)中的变量(${xxx})是从同级目录下的.env文件中读取的
+##########################################################################
+# compose支持的版本2
+version: "2"
+services:
+  # single
+  single:
+    image: ${IMAGE_REPO}/${IMAGE_SINGLE}
+    container_name: "single-${SERVICE_NAME}.${PRODUCT_NAME}.${COMPANY_NAME}"
+    hostname: "single-${SERVICE_NAME}.${PRODUCT_NAME}.${COMPANY_NAME}"
+    restart: "always"
+    environment:
+      - SINGLE_JMX_EXPORTER_ENABLED=true
+      - SINGLE_JMX_EXPORTER_PORT=9404
+      - SINGLE_PRINT_GC_ENABLED=true
+      - SINGLE_XMS=4096M
+      - SINGLE_XMX=4096M
+      - SINGLE_HTTP_LISTEN_PORT=8080
+      - SINGLE_OTHER_PARAMETERS=""
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./volume/single/fonts:/usr/share/fonts/chinese:rw
+      - ./volume/single/libextend:/data/app/libextend:ro
+      - ./volume/single/data:/data/app/lib:ro
+      - ./volume/single/logs:/data/app/logs:rw
+      - ./volume/single/temp:/data/app/temp:rw
+    network_mode: "host"
+    extra_hosts:
+      - "single-${SERVICE_NAME}.${PRODUCT_NAME}.${COMPANY_NAME}:${HOST_IP}"
+    # cap_add:
+    #   - NET_ADMIN
+    #   - SYS_ADMIN

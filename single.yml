@@ -12,13 +12,12 @@ services:
     hostname: "single-web.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
     environment:
-      - SINGLE_JMX_EXPORTER_ENABLED=true
-      - SINGLE_JMX_EXPORTER_PORT=9404
-      - SINGLE_PRINT_GC_ENABLED=true
-      - SINGLE_XMS=4096M
-      - SINGLE_XMX=4096M
-      - SINGLE_HTTP_LISTEN_PORT=8080
-      - SINGLE_OTHER_PARAMETERS=""
+      - JVM_JMX_EXPORTER_ENABLED=${JVM_JMX_EXPORTER_ENABLED}
+      - JVM_JMX_EXPORTER_PORT=${JVM_JMX_EXPORTER_PORT}
+      - JVM_XMS=${JVM_XMS}
+      - JVM_XMX=${JVM_XMX}
+      - JVM_HTTP_LISTEN_PORT=${JVM_HTTP_LISTEN_PORT}
+      - JVM_OTHER_PARAMETERS=${JVM_OTHER_PARAMETERS}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./volume/single/fonts:/usr/share/fonts/chinese:rw

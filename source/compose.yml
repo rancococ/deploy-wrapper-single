@@ -7,7 +7,7 @@ version: "2"
 services:
   # single
   single:
-    image: ${IMAGE_REPO}/${IMAGE_SINGLE}
+    image: "${IMAGE_SINGLE}"
     container_name: "single-web.${PRODUCT_NAME}.${COMPANY_NAME}"
     hostname: "single-web.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"

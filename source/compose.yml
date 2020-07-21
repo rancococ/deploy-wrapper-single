@@ -8,8 +8,8 @@ services:
   # single
   single:
     image: "${IMAGE_SINGLE}"
-    container_name: "single-web.${PRODUCT_NAME}.${COMPANY_NAME}"
-    hostname: "single-web.${PRODUCT_NAME}.${COMPANY_NAME}"
+    container_name: "single.${PRODUCT_NAME}.${COMPANY_NAME}"
+    hostname: "single.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
     env_file:
       - ./single.env
@@ -22,7 +22,7 @@ services:
       - ./volume/single/temp:/data/app/temp:rw
     network_mode: "host"
     extra_hosts:
-      - "single-web.${PRODUCT_NAME}.${COMPANY_NAME}:${HOST_IP}"
+      - "single.${PRODUCT_NAME}.${COMPANY_NAME}:${HOST_IP}"
     # cap_add:
     #   - NET_ADMIN
     #   - SYS_ADMIN

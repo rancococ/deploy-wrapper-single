@@ -15,6 +15,7 @@ services:
       - ./single.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - ./volume/single/conf/wrapper-additional.conf:/data/app/conf/wrapper-additional.conf:ro
       - ./volume/single/fonts:/usr/share/fonts/chinese:rw
       - ./volume/single/libextend:/data/app/libextend:ro
       - ./volume/single/data:/data/app/lib:ro
